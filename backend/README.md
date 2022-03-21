@@ -1,63 +1,114 @@
-# CodeIgniter 4 Application Starter
+# Execução da api
 
-## What is CodeIgniter?
+<br>
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+<p>Criação do postgreSQL com o docker. No diretório ./backend</p>
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+```
+sudo docker-compose up
+```
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+<br>
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+<p>Execução das migrations. No diretório ./backend</p>
 
-## Installation & updates
+```
+php spark migrate
+```
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+<br>
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+<p>Execução do servidor. No diretório ./backend/public</p>
 
-## Setup
+```
+php -S localhost:8080
+```
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+<br>
 
-## Important Change with index.php
+# Instalação do Php (linux).
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+<br>
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+```
+sudo apt update && sudo apt upgrade
+```
 
-**Please** read the user guide for a better explanation of how CI4 works!
+```
+sudo apt install software-properties-common
+```
 
-## Repository Management
+```
+sudo apt update
+```
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+```
+sudo add-apt-repository ppa:ondrej/php
+```
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+```
+sudo apt install php7.4
+```
 
-## Server Requirements
+```
+sudo apt-get install curl
+```
 
-PHP version 7.3 or higher is required, with the following extensions installed:
+```
+sudo apt-get install php7.4-curl
+```
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```
+sudo apt install php7.4-xml
+```
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+```
+sudo apt install php7.4-mbstring
+```
 
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+```
+sudo apt install zip unzip php-zip
+```
+
+```
+sudo apt install php7.4-pgsql
+```
+
+```
+cd ~
+```
+
+```
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+```
+
+```
+HASH=`curl -sS https://composer.github.io/installer.sig`
+```
+
+```
+echo $HASH
+```
+
+```
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+```
+
+```
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+```
+
+```
+sudo nano /etc/php/7.4/cli/php.ini
+```
+
+<p>Remover ";" de ;extension=intl</p>
+<p>Remover ";" de ;extension=intl</p>
+<p>Remover ";" de ;extension=curl</p>
+<p>Remover "#" de #extension=pdo_pgsql</p>
+
+<br>
+
+```
+sudo service apache2 restart
+```
