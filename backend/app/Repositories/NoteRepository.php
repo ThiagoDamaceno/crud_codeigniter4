@@ -61,7 +61,7 @@ class NoteRepository implements INoteRepository {
         $db = Database::connect();
 
         $result = $db->table('note')
-            ->like('title', $partialTitle . '%')
+            ->like('title', '%' . $partialTitle . '%')
             ->orderBy('title', $orderBy)
             ->get();
 
